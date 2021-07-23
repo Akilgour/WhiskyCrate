@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{B6687EBC-F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhiskyCrate.API.Test", "WhiskyCrate.API.Test\WhiskyCrate.API.Test.csproj", "{780AF707-7F4C-47B0-BDB3-05DD061C6DC3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhiskyCrate.Domain", "WhiskyCrate.Domain\WhiskyCrate.Domain.csproj", "{401C610B-9EEE-4A3B-9D31-726A6C477441}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{780AF707-7F4C-47B0-BDB3-05DD061C6DC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{780AF707-7F4C-47B0-BDB3-05DD061C6DC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{780AF707-7F4C-47B0-BDB3-05DD061C6DC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{401C610B-9EEE-4A3B-9D31-726A6C477441}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{401C610B-9EEE-4A3B-9D31-726A6C477441}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{401C610B-9EEE-4A3B-9D31-726A6C477441}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{401C610B-9EEE-4A3B-9D31-726A6C477441}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{DC677FB3-A2D6-46D1-AF6A-658722A3F17B} = {55AB6326-FB22-4AF4-BCC3-779BC4620CB5}
 		{780AF707-7F4C-47B0-BDB3-05DD061C6DC3} = {B6687EBC-F0A3-4069-B4C7-6515E4378BD1}
+		{401C610B-9EEE-4A3B-9D31-726A6C477441} = {55AB6326-FB22-4AF4-BCC3-779BC4620CB5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {48CBDA4B-7B42-486A-92BC-CEF100DC9C37}
