@@ -6,10 +6,12 @@ namespace WhiskyCrate.Domain
 {
     public abstract class BaseModel
     {
-        [Key]
-        [Required]
-        [Column(Order = 0)]
-        public Guid Id { get; set; }
+        //[Key]
+        //[Required]
+        //[Column(Order = 0)]
+        public int Id { get; set; }
+
+        
 
         [Required]
         public DateTime CreatedDate { get; set; }

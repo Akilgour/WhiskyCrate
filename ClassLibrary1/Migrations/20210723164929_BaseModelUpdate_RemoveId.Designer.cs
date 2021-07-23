@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WhiskyCrate.Data.Context;
 
 namespace WhiskyCrate.Data.Migrations
 {
     [DbContext(typeof(WhiskyCrateContext))]
-    partial class WhiskyCrateContextModelSnapshot : ModelSnapshot
+    [Migration("20210723164929_BaseModelUpdate_RemoveId")]
+    partial class BaseModelUpdate_RemoveId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,11 +23,6 @@ namespace WhiskyCrate.Data.Migrations
 
             modelBuilder.Entity("WhiskyCrate.Domain.Distillery.Distillery", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
@@ -41,8 +38,6 @@ namespace WhiskyCrate.Data.Migrations
 
                     b.Property<string>("Region")
                         .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
 
                     b.ToTable("Distilleries");
                 });

@@ -45,7 +45,7 @@ namespace WhiskyCrate.API.Controllers
         // PUT: api/Distillery/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutDistillery(Guid id, Distillery distillery)
+        public async Task<IActionResult> PutDistillery(int id, Distillery distillery)
         {
             if (id != distillery.Id)
             {
@@ -100,7 +100,7 @@ namespace WhiskyCrate.API.Controllers
             return NoContent();
         }
 
-        private bool DistilleryExists(Guid id)
+        private bool DistilleryExists(int id)
         {
             return _context.Distilleries.Any(e => e.Id == id);
         }

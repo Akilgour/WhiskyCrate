@@ -2,6 +2,7 @@
 
 namespace WhiskyCrate.Domain.Distillery
 {
+  
     public class Distillery : BaseModel
     {
         [Required]
