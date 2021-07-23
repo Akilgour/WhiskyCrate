@@ -15,6 +15,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhiskyCrate.Domain", "Whisk
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhiskyCrate.Data", "ClassLibrary1\WhiskyCrate.Data.csproj", "{3935CC12-738C-4AC5-9D56-A1284DB2CD37}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhiskyCrate.Application", "WhiskyCreate.Application\WhiskyCrate.Application.csproj", "{16129AB4-63AD-44DC-AE1B-F8A1AA724431}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhiskyCrate.Application.Contracts", "WhiskyCrate.Application.Contracts\WhiskyCrate.Application.Contracts.csproj", "{E49C3C75-BFC2-4662-8615-EEF415257EDC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +41,14 @@ Global
 		{3935CC12-738C-4AC5-9D56-A1284DB2CD37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3935CC12-738C-4AC5-9D56-A1284DB2CD37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3935CC12-738C-4AC5-9D56-A1284DB2CD37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16129AB4-63AD-44DC-AE1B-F8A1AA724431}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16129AB4-63AD-44DC-AE1B-F8A1AA724431}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16129AB4-63AD-44DC-AE1B-F8A1AA724431}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16129AB4-63AD-44DC-AE1B-F8A1AA724431}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E49C3C75-BFC2-4662-8615-EEF415257EDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E49C3C75-BFC2-4662-8615-EEF415257EDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E49C3C75-BFC2-4662-8615-EEF415257EDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E49C3C75-BFC2-4662-8615-EEF415257EDC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +58,8 @@ Global
 		{780AF707-7F4C-47B0-BDB3-05DD061C6DC3} = {B6687EBC-F0A3-4069-B4C7-6515E4378BD1}
 		{401C610B-9EEE-4A3B-9D31-726A6C477441} = {55AB6326-FB22-4AF4-BCC3-779BC4620CB5}
 		{3935CC12-738C-4AC5-9D56-A1284DB2CD37} = {55AB6326-FB22-4AF4-BCC3-779BC4620CB5}
+		{16129AB4-63AD-44DC-AE1B-F8A1AA724431} = {55AB6326-FB22-4AF4-BCC3-779BC4620CB5}
+		{E49C3C75-BFC2-4662-8615-EEF415257EDC} = {55AB6326-FB22-4AF4-BCC3-779BC4620CB5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {48CBDA4B-7B42-486A-92BC-CEF100DC9C37}
