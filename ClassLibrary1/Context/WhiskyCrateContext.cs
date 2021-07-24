@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WhiskyCrate.Domain.Distillery;
+using WhiskyCrate.Domain.Distilleries;
+using WhiskyCrate.Domain.WhiskyExpressions;
 
 namespace WhiskyCrate.Data.Context
 {
@@ -14,5 +15,6 @@ namespace WhiskyCrate.Data.Context
         }
 
         public DbSet<Distillery> Distilleries { get; set; }
+        public DbSet<WhiskyExpression> WhiskyExpressions { get; set; }
     }
 }

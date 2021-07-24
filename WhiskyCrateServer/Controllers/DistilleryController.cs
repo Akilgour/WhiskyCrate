@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WhiskyCrate.Application.Contracts.DistilleryService;
 using WhiskyCrate.Data.Context;
-using WhiskyCrate.Domain.Distillery;
+ using WhiskyCrate.Domain.Distilleries;
 
 namespace WhiskyCrate.API.Controllers
 {

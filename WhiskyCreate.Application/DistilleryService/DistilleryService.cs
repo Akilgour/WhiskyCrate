@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using WhiskyCrate.Application.Contracts.DistilleryService;
 using WhiskyCrate.Data.Context;
-using WhiskyCrate.Domain.Distillery;
+using WhiskyCrate.Domain.Distilleries;
 
 namespace WhiskyCrate.Application.DistilleryService
 {
