@@ -1,19 +1,13 @@
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using WhiskyCrate.Application.Contracts.DistilleryService;
-using WhiskyCrate.Application.DistilleryService;
+using WhiskyCrate.Application.Autofac;
 using WhiskyCrate.Data.Context;
 
 namespace WhiskyCrateServer
@@ -25,17 +19,15 @@ namespace WhiskyCrateServer
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfiguration Configuration { get; private set; }
+
+        public ILifetimeScope AutofacContainer { get; private set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-
-            services.AddTransient<IDistilleryService, DistilleryService>();
-
             services.AddControllers();
-            
+
             services.AddDbContext<WhiskyCrateContext>(opt =>
             opt.UseSqlServer(Configuration.GetConnectionString("WhiskyCrateContext"))
             .EnableSensitiveDataLogging()
@@ -46,11 +38,20 @@ namespace WhiskyCrateServer
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WhiskyCrateServer", Version = "v1" });
             });
+
+            // Add services to the collection. Don't build or return
+            // any IServiceProvider or the ConfigureContainer method
+            // won't get called. Don't create a ContainerBuilder
+            // for Autofac here, and don't call builder.Populate() - that
+            // happens in the AutofacServiceProviderFactory for you.
+            services.AddOptions();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            AutofacContainer = app.ApplicationServices.GetAutofacRoot();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -68,6 +69,18 @@ namespace WhiskyCrateServer
             {
                 endpoints.MapControllers();
             });
+        }
+
+        // ConfigureContainer is where you can register things directly
+        // with Autofac. This runs after ConfigureServices so the things
+        // here will override registrations made in ConfigureServices.
+        // Don't build the container; that gets done for you by the factory.
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            // Register your own things directly with Autofac here. Don't
+            // call builder.Populate(), that happens in AutofacServiceProviderFactory
+            // for you.
+            builder.RegisterModule(new WhiskyCrateApplicationModule());
         }
     }
 }
