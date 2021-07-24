@@ -16,7 +16,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ClassLibrary1\WhiskyCrate.Data.csproj" />
+    <ProjectReference Include="..\ClassLibrary2\WhiskyCrate.Application.Contracts.csproj" />
     <ProjectReference Include="..\WhiskyCrate.Domain\WhiskyCrate.Domain.csproj" />
+    <ProjectReference Include="..\WhiskyCreate.Application\WhiskyCrate.Application.csproj" />
   </ItemGroup>
 
 </Project>

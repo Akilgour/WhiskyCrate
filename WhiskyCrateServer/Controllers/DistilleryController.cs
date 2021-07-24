@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+ 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WhiskyCrate.Application.Contracts.DistilleryService;
 using WhiskyCrate.Data.Context;
 using WhiskyCrate.Domain.Distillery;
 
@@ -15,17 +16,20 @@ namespace WhiskyCrate.API.Controllers
     public class DistilleryController : ControllerBase
     {
         private readonly WhiskyCrateContext _context;
-
-        public DistilleryController(WhiskyCrateContext context)
+        private readonly IDistilleryService _distilleryService;
+          
+        public DistilleryController(WhiskyCrateContext context, IDistilleryService distilleryService)
         {
             _context = context;
+            _distilleryService = distilleryService;
         }
 
         // GET: api/Distillery
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Distillery>>> GetDistilleries()
+        public async Task<ActionResult<IEnumerable<Distillery>>> GetDistilleriesAsync()
         {
-            return await _context.Distilleries.ToListAsync();
+            var result =   await _distilleryService.GetDistilleries();
+            return Ok(result);
         }
 
         // GET: api/Distillery/5

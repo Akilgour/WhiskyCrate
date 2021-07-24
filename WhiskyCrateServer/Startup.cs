@@ -12,6 +12,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WhiskyCrate.Application.Contracts.DistilleryService;
+using WhiskyCrate.Application.DistilleryService;
 using WhiskyCrate.Data.Context;
 
 namespace WhiskyCrateServer
@@ -29,7 +31,11 @@ namespace WhiskyCrateServer
         public void ConfigureServices(IServiceCollection services)
         {
 
+
+            services.AddTransient<IDistilleryService, DistilleryService>();
+
             services.AddControllers();
+            
             services.AddDbContext<WhiskyCrateContext>(opt =>
             opt.UseSqlServer(Configuration.GetConnectionString("WhiskyCrateContext"))
             .EnableSensitiveDataLogging()
