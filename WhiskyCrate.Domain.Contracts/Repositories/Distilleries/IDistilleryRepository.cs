@@ -9,5 +9,6 @@ namespace WhiskyCrate.Data.Contracts.Repositories.Distilleries
     {
         Task<IEnumerable<Distillery>> GetDistilleries();
         Task<Distillery> GetDistillery(int id);
+        Task<Distillery> AddDistillery(Distillery distillery);
     }
 }

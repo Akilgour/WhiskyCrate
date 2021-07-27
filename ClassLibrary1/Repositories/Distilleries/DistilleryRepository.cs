@@ -14,6 +14,13 @@ namespace WhiskyCrate.Data.Repositories.Distilleries
         {
         }
 
+        public async Task<Distillery> AddDistillery(Distillery distillery)
+        {
+            context.Distilleries.Add(distillery);
+            await context.SaveChangesAsync();
+            return distillery;
+        }
+
         public async Task<IEnumerable<Distillery>> GetDistilleries()
         {
             return await context.Distilleries.ToListAsync();

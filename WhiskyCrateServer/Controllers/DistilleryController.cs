@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using WhiskyCrate.Application.Contracts.Distilleries;
 using WhiskyCrate.Application.Contracts.DistilleryService;
 using WhiskyCrate.Data.Context;
 using WhiskyCrate.Domain.Distilleries;
@@ -76,12 +77,10 @@ namespace WhiskyCrate.API.Controllers
         // POST: api/Distillery
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Distillery>> PostDistillery(Distillery distillery)
+        public async Task<IActionResult> PostDistillery(DistilleryPostRequest distillery)
         {
-            _context.Distilleries.Add(distillery);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetDistillery", new { id = distillery.Id }, distillery);
+            var result = await _distilleryService.AddDistillery(distillery);
+            return CreatedAtAction("GetDistillery", new { id = result.Id }, distillery);
         }
 
         // DELETE: api/Distillery/5

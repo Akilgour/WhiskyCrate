@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using WhiskyCrate.Application.Contracts.Distilleries;
 using WhiskyCrate.Application.Contracts.DistilleryService;
 using WhiskyCrate.Data.Contracts.Repositories.Distilleries;
+using WhiskyCrate.Domain.Distilleries;
 
 namespace WhiskyCrate.Application.DistilleryService
 {
@@ -16,6 +17,12 @@ namespace WhiskyCrate.Application.DistilleryService
         {
             this.distilleryRepository = distilleryRepository;
             this.mapper = mapper;
+        }
+
+        public async Task<DistilleryGetDto> AddDistillery(DistilleryPostRequest distillery)
+        {
+            var result = await distilleryRepository.AddDistillery(mapper.Map<Distillery>(distillery));
+            return mapper.Map<DistilleryGetDto>(result);
         }
 
         public async Task<IEnumerable<DistilleryGetListDto>> GetDistilleries()

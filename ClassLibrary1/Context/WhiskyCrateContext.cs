@@ -4,9 +4,10 @@ using WhiskyCrate.Domain.WhiskyExpressions;
 
 namespace WhiskyCrate.Data.Context
 {
-    public class WhiskyCrateContext : DbContext
+    public class WhiskyCrateContext : BaseContext
     {
         public WhiskyCrateContext()
+            : base()
         {
         }
 

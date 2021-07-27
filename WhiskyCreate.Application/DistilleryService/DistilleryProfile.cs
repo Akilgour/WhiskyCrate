@@ -15,6 +15,7 @@ namespace WhiskyCrate.Application.DistilleryService
             CreateMap<Distillery, DistilleryGetDto>();
             CreateMap<WhiskyExpression, DistilleryGetWhiskyExpressionDto>()
                   .ForMember(dest => dest.AgeDisplay, opt => opt.MapFrom(src => MonthsToYears.Resolve(src.AgeInMonths)));
+            CreateMap<DistilleryPostRequest, Distillery>();
         }
     }
 }
