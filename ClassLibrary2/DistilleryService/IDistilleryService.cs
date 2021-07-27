@@ -10,5 +10,6 @@ namespace WhiskyCrate.Application.Contracts.DistilleryService
 
         Task<DistilleryGetDto> GetDistillery(int id);
         Task<DistilleryGetDto> AddDistillery(DistilleryPostRequest distillery);
+        Task<bool> DeleteDistillery(int id);
     }
 }

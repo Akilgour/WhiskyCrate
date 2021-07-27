@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 using WhiskyCrate.Application.Contracts.Distilleries;
@@ -85,18 +84,17 @@ namespace WhiskyCrate.API.Controllers
 
         // DELETE: api/Distillery/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteDistillery(Guid id)
+        public async Task<IActionResult> DeleteDistillery(int id)
         {
-            var distillery = await _context.Distilleries.FindAsync(id);
-            if (distillery == null)
+            var deleted = await _distilleryService.DeleteDistillery(id);
+            if (deleted)
+            {
+                return NoContent();
+            }
+            else
             {
                 return NotFound();
             }
-
-            _context.Distilleries.Remove(distillery);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
         }
 
         private bool DistilleryExists(int id)

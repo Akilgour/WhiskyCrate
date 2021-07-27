@@ -21,6 +21,18 @@ namespace WhiskyCrate.Data.Repositories.Distilleries
             return distillery;
         }
 
+        public async Task<bool> DeleteDistillery(int id)
+        {
+            var distillery = await context.Distilleries.FindAsync(id);
+            if (distillery == null)
+            {
+                return false;
+            }
+            context.Distilleries.Remove(distillery);
+            await context.SaveChangesAsync();
+            return true;
+        }
+
         public async Task<IEnumerable<Distillery>> GetDistilleries()
         {
             return await context.Distilleries.ToListAsync();

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using WhiskyCrate.Domain.Distilleries;
 
@@ -10,5 +9,6 @@ namespace WhiskyCrate.Data.Contracts.Repositories.Distilleries
         Task<IEnumerable<Distillery>> GetDistilleries();
         Task<Distillery> GetDistillery(int id);
         Task<Distillery> AddDistillery(Distillery distillery);
+        Task<bool> DeleteDistillery(int id);
     }
 }
