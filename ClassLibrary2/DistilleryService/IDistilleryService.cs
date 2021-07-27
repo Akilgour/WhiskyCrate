@@ -7,5 +7,7 @@ namespace WhiskyCrate.Application.Contracts.DistilleryService
     public interface IDistilleryService
     {
         Task<IEnumerable<DistilleryGetListDto>> GetDistilleries();
+
+        Task<DistilleryGetDto> GetDistillery(int id);
     }
 }

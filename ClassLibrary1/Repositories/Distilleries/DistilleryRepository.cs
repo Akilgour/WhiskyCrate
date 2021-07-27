@@ -18,5 +18,12 @@ namespace WhiskyCrate.Data.Repositories.Distilleries
         {
             return await context.Distilleries.ToListAsync();
         }
+
+        public async Task<Distillery> GetDistillery(int id)
+        {
+                return await context.Distilleries
+                      .Include(distillery => distillery.WhiskyExpressions)
+                      .FirstOrDefaultAsync(distillery => distillery.Id == id);
+        }
     }
 }

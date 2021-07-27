@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using WhiskyCrate.Application.Contracts.Distilleries;
 using WhiskyCrate.Domain.Distilleries;
+using WhiskyCrate.Domain.WhiskyExpressions;
 
 namespace WhiskyCrate.Application.DistilleryService
 {
@@ -9,6 +10,9 @@ namespace WhiskyCrate.Application.DistilleryService
         public DistilleryProfile()
         {
             CreateMap<Distillery, DistilleryGetListDto>();
+
+            CreateMap<Distillery, DistilleryGetDto>();
+            CreateMap<WhiskyExpression, DistilleryGetWhiskyExpressionDto>();
 
         }
     }

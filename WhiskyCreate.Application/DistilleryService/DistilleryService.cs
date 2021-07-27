@@ -22,5 +22,10 @@ namespace WhiskyCrate.Application.DistilleryService
         {
             return mapper.Map<IEnumerable<DistilleryGetListDto>>(await distilleryRepository.GetDistilleries());
         }
+
+        public async Task<DistilleryGetDto> GetDistillery(int id)
+        {
+            return mapper.Map<DistilleryGetDto>(await distilleryRepository.GetDistillery(id));
+        }
     }
 }

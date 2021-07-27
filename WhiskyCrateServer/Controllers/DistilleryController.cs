@@ -24,7 +24,7 @@ namespace WhiskyCrate.API.Controllers
 
         // GET: api/Distillery
         [HttpGet]
-        public async Task<ActionResult> GetDistilleriesAsync()
+        public async Task<IActionResult> GetDistilleries()
         {
             var result = await _distilleryService.GetDistilleries();
             return Ok(result);
@@ -32,16 +32,14 @@ namespace WhiskyCrate.API.Controllers
 
         // GET: api/Distillery/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Distillery>> GetDistillery(Guid id)
+        public async Task<IActionResult> GetDistillery(int id)
         {
-            var distillery = await _context.Distilleries.FindAsync(id);
-
-            if (distillery == null)
+            var result = await _distilleryService.GetDistillery(id);
+            if (result == null)
             {
                 return NotFound();
             }
-
-            return distillery;
+            return Ok(result);
         }
 
         // PUT: api/Distillery/5

@@ -30,16 +30,18 @@ namespace WhiskyCrateServer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //This works but dont want to do this for everything
-            services.AddAutoMapper(typeof(DistilleryProfile));
-
+           
             services.AddControllers();
 
             services.AddDbContext<WhiskyCrateContext>(opt =>
-            opt.UseSqlServer(Configuration.GetConnectionString("WhiskyCrateContext"))
+            opt.UseSqlServer(Configuration.GetConnectionString("WhiskyCrateConectionString"))
             .EnableSensitiveDataLogging()
             .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
             );
+
+            //This works but dont want to do this for everything
+            services.AddAutoMapper(typeof(DistilleryProfile));
+
 
             services.AddSwaggerGen(c =>
             {
