@@ -7,8 +7,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System;
+using System.Collections.Generic;
 using WhiskyCrate.Application.Autofac;
+using WhiskyCrate.Application.DistilleryService;
 using WhiskyCrate.Data.Context;
+
 
 namespace WhiskyCrateServer
 {
@@ -26,6 +30,9 @@ namespace WhiskyCrateServer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //This works but dont want to do this for everything
+            services.AddAutoMapper(typeof(DistilleryProfile));
+
             services.AddControllers();
 
             services.AddDbContext<WhiskyCrateContext>(opt =>
@@ -46,7 +53,7 @@ namespace WhiskyCrateServer
             // happens in the AutofacServiceProviderFactory for you.
             services.AddOptions();
         }
-
+ 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

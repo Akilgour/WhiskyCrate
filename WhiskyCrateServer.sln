@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhiskyCrate.Application", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhiskyCrate.Application.Contracts", "ClassLibrary2\WhiskyCrate.Application.Contracts.csproj", "{B9A67AF9-649C-47CF-B8D6-09CC2AB1AF51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhiskyCrate.Data.Contracts", "WhiskyCrate.Domain.Contracts\WhiskyCrate.Data.Contracts.csproj", "{3B47A208-991B-449E-930A-E681C9361FBD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhiskyCrate.Data.Contracts", "WhiskyCrate.Domain.Contracts\WhiskyCrate.Data.Contracts.csproj", "{3B47A208-991B-449E-930A-E681C9361FBD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

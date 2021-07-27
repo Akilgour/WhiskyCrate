@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using WhiskyCrate.Domain.Distilleries;
+using WhiskyCrate.Application.Contracts.Distilleries;
 
 namespace WhiskyCrate.Application.Contracts.DistilleryService
 {
     public interface IDistilleryService
     {
-        Task<IEnumerable<Distillery>> GetDistilleries();
+        Task<IEnumerable<DistilleryGetListDto>> GetDistilleries();
     }
 }
