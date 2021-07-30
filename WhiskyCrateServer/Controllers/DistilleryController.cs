@@ -45,32 +45,21 @@ namespace WhiskyCrate.API.Controllers
         // PUT: api/Distillery/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutDistillery(int id, Distillery distillery)
+        public async Task<IActionResult> PutDistillery(int id, DistilleryPutRequest distillery)
         {
-            if (id != distillery.Id)
+            if (id ==0)
             {
                 return BadRequest();
             }
 
-            _context.Entry(distillery).State = EntityState.Modified;
-
-            try
+            if (! await _distilleryService.DistilleryExists(id))
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!DistilleryExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return NotFound();
             }
 
-            return NoContent();
+            var result = await _distilleryService.UpdateDistillery(distillery);
+
+            return Ok(result);
         }
 
         // POST: api/Distillery

@@ -30,6 +30,11 @@ namespace WhiskyCrate.Application.DistilleryService
             return await distilleryRepository.DeleteDistillery(id);
         }
 
+        public async Task<bool> DistilleryExists(int id)
+        {
+            return await distilleryRepository.DistilleryExists(id);
+        }
+
         public async Task<IEnumerable<DistilleryGetListDto>> GetDistilleries()
         {
             return mapper.Map<IEnumerable<DistilleryGetListDto>>(await distilleryRepository.GetDistilleries());
@@ -38,6 +43,11 @@ namespace WhiskyCrate.Application.DistilleryService
         public async Task<DistilleryGetDto> GetDistillery(int id)
         {
             return mapper.Map<DistilleryGetDto>(await distilleryRepository.GetDistillery(id));
+        }
+
+        public Task<DistilleryGetDto> UpdateDistillery(DistilleryPutRequest distillery)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
