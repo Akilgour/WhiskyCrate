@@ -10,23 +10,23 @@ namespace WhiskyCrate.API.Managers
 {
     public interface IGetDistilleryManager
     {
-        Task<GetDistilleryResult> GetDistillery(int id);
+        Task<DistilleryGetResult> GetDistillery(int id);
     }
 
-    public class GetDistilleryManager : IGetDistilleryManager
+    public class DistilleryGetManager : IGetDistilleryManager
     {
         private readonly IDistilleryService distilleryService;
         private readonly IMapper mapper;
 
-        public GetDistilleryManager(IDistilleryService distilleryService, IMapper mapper)
+        public DistilleryGetManager(IDistilleryService distilleryService, IMapper mapper)
         {
             this.distilleryService = distilleryService;
             this.mapper = mapper;
         }
 
-        public async Task<GetDistilleryResult> GetDistillery(int id)
+        public async Task<DistilleryGetResult> GetDistillery(int id)
         {
-            return mapper.Map<GetDistilleryResult>(await distilleryService.GetDistillery(id));
+            return mapper.Map<DistilleryGetResult>(await distilleryService.GetDistillery(id));
         }
     }
 
@@ -34,22 +34,22 @@ namespace WhiskyCrate.API.Managers
     {
         public GetDistilleryProfile()
         {
-            CreateMap<Distillery, GetDistilleryResult>();
-            CreateMap<WhiskyExpression, GetDistilleryResultWhiskyExpression>()
+            CreateMap<Distillery, DistilleryGetResult>();
+            CreateMap<WhiskyExpression, DistilleryGetResultWhiskyExpression>()
                   .ForMember(dest => dest.AgeDisplay, opt => opt.MapFrom(src => MonthsToYears.Resolve(src.AgeInMonths)));
             }
     }
 
-    public class GetDistilleryResult
+    public class DistilleryGetResult
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public bool CurrentlyOperating { get; set; }
         public string Region { get; set; }
-        public List<GetDistilleryResultWhiskyExpression> WhiskyExpressions { get; set; } = new List<GetDistilleryResultWhiskyExpression>();
+        public List<DistilleryGetResultWhiskyExpression> WhiskyExpressions { get; set; } = new List<DistilleryGetResultWhiskyExpression>();
     }
 
-    public class GetDistilleryResultWhiskyExpression
+    public class DistilleryGetResultWhiskyExpression
     {
         public int Id { get; set; }
         public string AgeDisplay { get; set; }

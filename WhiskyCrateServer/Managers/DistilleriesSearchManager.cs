@@ -8,35 +8,35 @@ namespace WhiskyCrate.API.Managers
 {
     public interface ISearchDistilleriesManager
     {
-        Task<IEnumerable<SearchsDistilleryResult>> GetDistilleries();
+        Task<IEnumerable<DistillerySearchResult>> GetDistilleries();
     }
 
-    public class SearchDistilleriesManager : ISearchDistilleriesManager
+    public class DistilleriesSearchManager : ISearchDistilleriesManager
     {
         private readonly IDistilleryService distilleryService;
         private readonly IMapper mapper;
 
-        public SearchDistilleriesManager(IDistilleryService distilleryService, IMapper mapper)
+        public DistilleriesSearchManager(IDistilleryService distilleryService, IMapper mapper)
         {
             this.distilleryService = distilleryService;
             this.mapper = mapper;
         }
 
-        public async Task<IEnumerable<SearchsDistilleryResult>> GetDistilleries()
+        public async Task<IEnumerable<DistillerySearchResult>> GetDistilleries()
         {
-            return mapper.Map<IEnumerable<SearchsDistilleryResult>>(await distilleryService.GetDistilleries());
+            return mapper.Map<IEnumerable<DistillerySearchResult>>(await distilleryService.GetDistilleries());
         }
     }
 
-    public class SearchDistilleriesManagerProfile : Profile
+    public class DistilleriesSearchManagerProfile : Profile
     {
-        public SearchDistilleriesManagerProfile()
+        public DistilleriesSearchManagerProfile()
         {
-            CreateMap<Distillery, SearchsDistilleryResult>();
+            CreateMap<Distillery, DistillerySearchResult>();
         }
     }
 
-    public class SearchsDistilleryResult
+    public class DistillerySearchResult
     {
         public int Id { get; set; }
         public string Name { get; set; }
