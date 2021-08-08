@@ -45,9 +45,9 @@ namespace WhiskyCrate.Application.DistilleryService
             return await distilleryRepository.GetDistillery(id);
         }
 
-        public Task<DistilleryGetDto> UpdateDistillery(DistilleryPutRequest distillery)
+        public async Task UpdateDistillery(Distillery distillery)
         {
-            throw new System.NotImplementedException();
-        }
+             await distilleryRepository.UpdateDistillery(distillery);
+       }
     }
 }

@@ -7,12 +7,12 @@ namespace WhiskyCrate.Data.Context
 {
     public class BaseContext : DbContext
     {
-        protected BaseContext()
-            :base()
+        public BaseContext()
         {
         }
 
-        protected BaseContext(DbContextOptions options) : base(options)
+        protected BaseContext(DbContextOptions<WhiskyCrateContext> options)
+            : base(options)
         {
         }
 
@@ -22,8 +22,7 @@ namespace WhiskyCrate.Data.Context
             //Setting a var so the date time is the same for create and update on brand new items
             var now = DateTime.UtcNow;
 
-            foreach (var entry in ChangeTracker.Entries().Where(e => e.State == EntityState.Added ||
-             e.State == EntityState.Modified))
+            foreach (var entry in ChangeTracker.Entries().Where(e => e.State == EntityState.Added || e.State == EntityState.Modified))
             {
                 entry.Property("LastModifiedDate").CurrentValue = now;
             }

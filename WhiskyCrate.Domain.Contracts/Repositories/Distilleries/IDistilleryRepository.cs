@@ -11,5 +11,6 @@ namespace WhiskyCrate.Data.Contracts.Repositories.Distilleries
         Task<Distillery> AddDistillery(Distillery distillery);
         Task<bool> DeleteDistillery(int id);
         Task<bool> DistilleryExists(int id);
+        Task UpdateDistillery(Distillery distillery);
     }
 }

@@ -35,7 +35,7 @@ namespace WhiskyCrate.Data.Repositories.Distilleries
 
         public async Task<bool> DistilleryExists(int id)
         {
-            return await Delete(id);
+            return await context.Distilleries.AnyAsync(x => x.Id == id);
         }
 
         public async Task<IEnumerable<Distillery>> GetDistilleries()
@@ -48,6 +48,11 @@ namespace WhiskyCrate.Data.Repositories.Distilleries
                 return await context.Distilleries
                       .Include(distillery => distillery.WhiskyExpressions)
                       .FirstOrDefaultAsync(distillery => distillery.Id == id);
+        }
+
+        public async Task UpdateDistillery(Distillery distillery)
+        {
+           await Update(distillery);
         }
     }
 }

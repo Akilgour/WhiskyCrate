@@ -18,14 +18,16 @@ namespace WhiskyCrate.API.Controllers
         private readonly IDistilleryService _distilleryService;
         private readonly ISearchDistilleriesManager searchDistilleriesManager;
         private readonly IGetDistilleryManager getDistilleryManager;
+        private readonly IDistilleryPutManager distilleryPutManager;
 
-        public DistilleryController(WhiskyCrateContext context, IDistilleryService distilleryService, ISearchDistilleriesManager searchDistilleriesManager, IGetDistilleryManager getDistilleryManager
+        public DistilleryController(WhiskyCrateContext context, IDistilleryService distilleryService, ISearchDistilleriesManager searchDistilleriesManager, IGetDistilleryManager getDistilleryManager , IDistilleryPutManager distilleryPutManager
             )
         {
             _context = context;
             _distilleryService = distilleryService;
             this.searchDistilleriesManager = searchDistilleriesManager;
             this.getDistilleryManager = getDistilleryManager;
+            this.distilleryPutManager = distilleryPutManager;
         }
 
         // GET: api/Distillery
@@ -53,7 +55,7 @@ namespace WhiskyCrate.API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutDistillery(int id, DistilleryPutRequest distillery)
         {
-            if (id ==0)
+            if (id != distillery.Id)
             {
                 return BadRequest();
             }
@@ -63,9 +65,9 @@ namespace WhiskyCrate.API.Controllers
                 return NotFound();
             }
 
-            var result = await _distilleryService.UpdateDistillery(distillery);
+             await distilleryPutManager.UpdateDistillery(distillery);
 
-            return Ok(result);
+            return Ok( );
         }
 
         // POST: api/Distillery
