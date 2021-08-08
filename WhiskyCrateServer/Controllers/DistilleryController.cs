@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 using System.Threading.Tasks;
 using WhiskyCrate.API.Managers;
 using WhiskyCrate.Application.Contracts.DistilleryService;
-using WhiskyCrate.Data.Context;
 
 namespace WhiskyCrate.API.Controllers
 {
@@ -11,17 +9,14 @@ namespace WhiskyCrate.API.Controllers
     [ApiController]
     public class DistilleryController : ControllerBase
     {
-        private readonly WhiskyCrateContext _context;
         private readonly IDistilleryService _distilleryService;
         private readonly ISearchDistilleriesManager searchDistilleriesManager;
         private readonly IGetDistilleryManager getDistilleryManager;
         private readonly IDistilleryPutManager distilleryPutManager;
         private readonly IDistilleryAddManager distilleryAddManager;
 
-        public DistilleryController(WhiskyCrateContext context, IDistilleryService distilleryService, ISearchDistilleriesManager searchDistilleriesManager, IGetDistilleryManager getDistilleryManager, IDistilleryPutManager distilleryPutManager, IDistilleryAddManager distilleryAddManager
-            )
+        public DistilleryController(IDistilleryService distilleryService, ISearchDistilleriesManager searchDistilleriesManager, IGetDistilleryManager getDistilleryManager, IDistilleryPutManager distilleryPutManager, IDistilleryAddManager distilleryAddManager)
         {
-            _context = context;
             _distilleryService = distilleryService;
             this.searchDistilleriesManager = searchDistilleriesManager;
             this.getDistilleryManager = getDistilleryManager;
@@ -91,11 +86,6 @@ namespace WhiskyCrate.API.Controllers
             {
                 return NotFound();
             }
-        }
-
-        private bool DistilleryExists(int id)
-        {
-            return _context.Distilleries.Any(e => e.Id == id);
         }
     }
 }
