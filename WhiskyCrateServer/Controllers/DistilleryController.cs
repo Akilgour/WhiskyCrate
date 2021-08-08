@@ -1,12 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 using WhiskyCrate.API.Managers;
-using WhiskyCrate.Application.Contracts.Distilleries;
 using WhiskyCrate.Application.Contracts.DistilleryService;
 using WhiskyCrate.Data.Context;
-using WhiskyCrate.Domain.Distilleries;
 
 namespace WhiskyCrate.API.Controllers
 {
@@ -19,8 +16,9 @@ namespace WhiskyCrate.API.Controllers
         private readonly ISearchDistilleriesManager searchDistilleriesManager;
         private readonly IGetDistilleryManager getDistilleryManager;
         private readonly IDistilleryPutManager distilleryPutManager;
+        private readonly IDistilleryAddManager distilleryAddManager;
 
-        public DistilleryController(WhiskyCrateContext context, IDistilleryService distilleryService, ISearchDistilleriesManager searchDistilleriesManager, IGetDistilleryManager getDistilleryManager , IDistilleryPutManager distilleryPutManager
+        public DistilleryController(WhiskyCrateContext context, IDistilleryService distilleryService, ISearchDistilleriesManager searchDistilleriesManager, IGetDistilleryManager getDistilleryManager, IDistilleryPutManager distilleryPutManager, IDistilleryAddManager distilleryAddManager
             )
         {
             _context = context;
@@ -28,6 +26,7 @@ namespace WhiskyCrate.API.Controllers
             this.searchDistilleriesManager = searchDistilleriesManager;
             this.getDistilleryManager = getDistilleryManager;
             this.distilleryPutManager = distilleryPutManager;
+            this.distilleryAddManager = distilleryAddManager;
         }
 
         // GET: api/Distillery
@@ -60,23 +59,23 @@ namespace WhiskyCrate.API.Controllers
                 return BadRequest();
             }
 
-            if (! await _distilleryService.DistilleryExists(id))
+            if (!await _distilleryService.DistilleryExists(id))
             {
                 return NotFound();
             }
 
-             await distilleryPutManager.UpdateDistillery(distillery);
+            await distilleryPutManager.UpdateDistillery(distillery);
 
-            return Ok( );
+            return Ok();
         }
 
         // POST: api/Distillery
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<IActionResult> PostDistillery(DistilleryPostRequest distillery)
+        public async Task<IActionResult> PostDistillery(DistilleryAddRequest distillery)
         {
-            var result = await _distilleryService.AddDistillery(distillery);
-            return CreatedAtAction("GetDistillery", new { id = result.Id }, distillery);
+            await distilleryAddManager.AddDistillery(distillery);
+            return Ok();
         }
 
         // DELETE: api/Distillery/5
