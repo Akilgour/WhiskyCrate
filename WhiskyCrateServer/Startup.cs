@@ -7,10 +7,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
+using System.Reflection;
 using WhiskyCrate.Application.Autofac;
-using WhiskyCrate.Application.DistilleryService;
 using WhiskyCrate.Data.Context;
 
 
@@ -39,10 +37,7 @@ namespace WhiskyCrateServer
             .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
             );
 
-            //This works but dont want to do this for everything
-            services.AddAutoMapper(typeof(DistilleryProfile));
-
-
+            services.AddAutoMapper(typeof(Startup).Assembly);
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WhiskyCrateServer", Version = "v1" });
@@ -86,9 +81,18 @@ namespace WhiskyCrateServer
         // Don't build the container; that gets done for you by the factory.
         public void ConfigureContainer(ContainerBuilder builder)
         {
+
             // Register your own things directly with Autofac here. Don't
             // call builder.Populate(), that happens in AutofacServiceProviderFactory
             // for you.
+
+            //This set up all the manager classes that call what does all the api work
+            var thisAssembly = Assembly.GetExecutingAssembly();
+            builder.RegisterAssemblyTypes(thisAssembly)
+             .Where(t => t.Name.EndsWith("Manager"))
+             .AsImplementedInterfaces();
+
+            //This is the WhiskyCrate.Application they only layer the api knows about
             builder.RegisterModule(new WhiskyCrateApplicationModule());
         }
     }

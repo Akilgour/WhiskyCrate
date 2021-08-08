@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
+using WhiskyCrate.API.Managers;
 using WhiskyCrate.Application.Contracts.Distilleries;
 using WhiskyCrate.Application.Contracts.DistilleryService;
 using WhiskyCrate.Data.Context;
@@ -15,18 +16,21 @@ namespace WhiskyCrate.API.Controllers
     {
         private readonly WhiskyCrateContext _context;
         private readonly IDistilleryService _distilleryService;
+        private readonly ISearchDistilleriesManager searchDistilleriesManager;
 
-        public DistilleryController(WhiskyCrateContext context, IDistilleryService distilleryService)
+        public DistilleryController(WhiskyCrateContext context, IDistilleryService distilleryService, ISearchDistilleriesManager SearchDistilleriesManager
+            )
         {
             _context = context;
             _distilleryService = distilleryService;
+            searchDistilleriesManager = SearchDistilleriesManager;
         }
 
         // GET: api/Distillery
         [HttpGet]
         public async Task<IActionResult> GetDistilleries()
         {
-            var result = await _distilleryService.GetDistilleries();
+            var result = await searchDistilleriesManager.GetDistilleries();
             return Ok(result);
         }
 

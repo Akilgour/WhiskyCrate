@@ -10,7 +10,6 @@ namespace WhiskyCrate.Application.DistilleryService
     {
         public DistilleryProfile()
         {
-            CreateMap<Distillery, DistilleryGetListDto>();
 
             CreateMap<Distillery, DistilleryGetDto>();
             CreateMap<WhiskyExpression, DistilleryGetWhiskyExpressionDto>()
