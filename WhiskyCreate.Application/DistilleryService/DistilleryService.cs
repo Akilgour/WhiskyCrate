@@ -40,9 +40,9 @@ namespace WhiskyCrate.Application.DistilleryService
             return await distilleryRepository.GetDistilleries();
         }
 
-        public async Task<DistilleryGetDto> GetDistillery(int id)
+        public async Task<Distillery> GetDistillery(int id)
         {
-            return mapper.Map<DistilleryGetDto>(await distilleryRepository.GetDistillery(id));
+            return await distilleryRepository.GetDistillery(id);
         }
 
         public Task<DistilleryGetDto> UpdateDistillery(DistilleryPutRequest distillery)

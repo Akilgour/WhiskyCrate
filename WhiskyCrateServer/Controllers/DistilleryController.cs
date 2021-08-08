@@ -17,13 +17,15 @@ namespace WhiskyCrate.API.Controllers
         private readonly WhiskyCrateContext _context;
         private readonly IDistilleryService _distilleryService;
         private readonly ISearchDistilleriesManager searchDistilleriesManager;
+        private readonly IGetDistilleryManager getDistilleryManager;
 
-        public DistilleryController(WhiskyCrateContext context, IDistilleryService distilleryService, ISearchDistilleriesManager SearchDistilleriesManager
+        public DistilleryController(WhiskyCrateContext context, IDistilleryService distilleryService, ISearchDistilleriesManager searchDistilleriesManager, IGetDistilleryManager getDistilleryManager
             )
         {
             _context = context;
             _distilleryService = distilleryService;
-            searchDistilleriesManager = SearchDistilleriesManager;
+            this.searchDistilleriesManager = searchDistilleriesManager;
+            this.getDistilleryManager = getDistilleryManager;
         }
 
         // GET: api/Distillery
@@ -38,7 +40,7 @@ namespace WhiskyCrate.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetDistillery(int id)
         {
-            var result = await _distilleryService.GetDistillery(id);
+            var result = await getDistilleryManager.GetDistillery(id);
             if (result == null)
             {
                 return NotFound();

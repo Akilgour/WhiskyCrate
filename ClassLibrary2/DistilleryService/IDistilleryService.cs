@@ -9,7 +9,7 @@ namespace WhiskyCrate.Application.Contracts.DistilleryService
     {
         Task<IEnumerable<Distillery>> GetDistilleries();
 
-        Task<DistilleryGetDto> GetDistillery(int id);
+        Task<Distillery> GetDistillery(int id);
         Task<DistilleryGetDto> AddDistillery(DistilleryPostRequest distillery);
         Task<bool> DeleteDistillery(int id);
         Task<bool> DistilleryExists(int id);
